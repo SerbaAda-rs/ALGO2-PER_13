@@ -120,3 +120,20 @@ def main():
 
 
 main()
+
+
+
+# =====================================================
+# RINGKASAN ANALISIS KOMPLEKSITAS SISTEM
+# Fitur                Kompleksitas
+# Tambah Data          O(1)
+# Searching            O(1) rata-rata
+# Tampilkan Data       O(n)
+# Sorting Nilai        O(n²)
+# Simpan File          O(n)
+#
+# Kompleksitas Dominan : O(n²)
+# Karena proses sorting menggunakan
+# algoritma Insertion Sort yang memiliki
+# kompleksitas rata-rata dan terburuk O(n²).
+# =====================================================
