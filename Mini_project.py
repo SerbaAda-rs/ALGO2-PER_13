@@ -1,3 +1,8 @@
+import os
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 print("====== Program Mini Project ======")
 print("====== Rahmadi_552012105009 ======")
 
@@ -51,6 +56,18 @@ def cari_data(data):
         print("Data tidak ditemukan.")
 
 
+
+# Fungsi hapus data
+def hapus_data(data):
+    nim = input("Masukkan NIM yang akan dihapus: ")
+
+    if nim in data:
+        del data[nim]
+        print("Data berhasil dihapus.")
+    else:
+        print("Data tidak ditemukan.")
+
+
 # Kompleksitas rata-rata O(1) untuk pencarian dictionary
 
 
@@ -59,9 +76,9 @@ def tampilkan_menu():
     print("\n==== MINI PROJECT NILAI MAHASISWA ====")
     print("1. Tambah Data")
     print("2. Tampilkan Data")
-    print("3. Sorting Nilai")
-    print("4. Cari Data")
-    print("5. Simpan & Keluar")
+    print("3. Hapus Data")
+    print("4. Simpan & Keluar")
+    
 
 
 # Fungsi tambah data
@@ -102,17 +119,11 @@ def main():
             tampilkan_data(data)
 
         elif pilih == "3":
-            hasil = sorting_nilai(data)
-            print("\nData Terurut Berdasarkan Nilai:")
-            for nim, nilai in hasil:
-                print(nim, nilai)
+           hapus_data(data)
 
         elif pilih == "4":
-            cari_data(data)
-
-        elif pilih == "5":
             simpan_file(nama_file, data)
-            print("Data disimpan. Program selesai.")
+            print(f"Data Berhasil disimpan ke {nama_file}, Program Selesai")
             break
 
         else:
@@ -121,19 +132,15 @@ def main():
 
 main()
 
-
-
 # =====================================================
 # RINGKASAN ANALISIS KOMPLEKSITAS SISTEM
 # Fitur                Kompleksitas
 # Tambah Data          O(1)
-# Searching            O(1) rata-rata
 # Tampilkan Data       O(n)
-# Sorting Nilai        O(n²)
+# Hapus Data           O(1)
 # Simpan File          O(n)
 #
-# Kompleksitas Dominan : O(n²)
-# Karena proses sorting menggunakan
-# algoritma Insertion Sort yang memiliki
-# kompleksitas rata-rata dan terburuk O(n²).
+# Kompleksitas Dominan : O(n)
+# Karena proses menampilkan data dan
+# menyimpan file harus membaca seluruh data.
 # =====================================================
