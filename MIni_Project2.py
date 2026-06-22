@@ -2,16 +2,10 @@ import os
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
-
 clear_screen()
-
-
 
 print("====== PROGRAM_MINI_PROJECT_02 ======")
 print("======  Rahmadi_552012105009   ======")
-
-
-
 # FUNGSI MEMBACA FILE
 # Kompleksitas: O(n)
 def baca_file(nama_file):
@@ -35,7 +29,6 @@ def baca_file(nama_file):
 
     return data
 
-
 # FUNGSI MENYIMPAN FILE
 # Kompleksitas: O(n)
 def simpan_file(nama_file, data):
@@ -49,24 +42,26 @@ def simpan_file(nama_file, data):
     except Exception as e:
         print("TERJADI KESALAHAN:", e)
 
-
 # FUNGSI TAMBAH DATA
 # Kompleksitas: O(1)
 def tambah_data(data):
     nim = input("Masukkan NIM : ")
-
+    #Harus angka 
     if not nim.isdigit():
         print("NIM harus berupa angka!")
         return
+    #Harus 12 angka
+    if len(nim) != 12:
+        print("NIM Harus terdiri dari 12 ANGKA!")
+        return
    
-    
+    #Tidak boleh duplikat
     if nim in data:
         print("NIM SUDAH TERDAFTAR!")
         return
 
     try:
         nilai = float(input("Masukkan Nilai : "))
-
 
         #Menempatkan data baru ke atas
         data_baru = {nim: nilai}
@@ -79,8 +74,6 @@ def tambah_data(data):
 
     except ValueError:
         print("NILAI HARUS ANGKA.")
-
-
 
 # FUNGSI TAMPILKAN DATA
 # Kompleksitas: O(n)
@@ -95,8 +88,6 @@ def tampilkan_data(data):
     for nim, nilai in data.items():
         print(f"NIM : {nim} | Nilai : {nilai}")
 
-
-
 # FUNGSI SORTING (INSERTION SORT)
 # Kompleksitas: O(n²)
 def sorting_nilai(data):
@@ -105,18 +96,14 @@ def sorting_nilai(data):
 
     for i in range(1, len(items)):
         key = items[i]
-
         j = i - 1
 
         while j >= 0 and items[j][1] > key[1]:
             items[j + 1] = items[j]
             j -= 1
-
         items[j + 1] = key
 
     return items
-
-
 
 # FUNGSI SEARCHING
 # Kompleksitas rata-rata: O(1)
@@ -133,8 +120,6 @@ def cari_data(data):
 
     else:
         print("DATA TIDAK DITEMUKAN!.")
-
-
 
 # FUNGSI HAPUS DATA
 # Kompleksitas rata-rata: O(1)
@@ -179,8 +164,6 @@ def hapus_data(data):
     else:
         print("Data tidak ditemukan.")
 
-
-
 # FUNGSI STATISTIK DATA
 # Kompleksitas: O(n)
 def statistik_data(data):
@@ -190,11 +173,8 @@ def statistik_data(data):
         return
 
     total_data = len(data)
-
     rata_rata = sum(data.values()) / total_data
-
     nilai_tertinggi = max(data.values())
-
     nilai_terendah = min(data.values())
 
     print("\n===== STATISTIK DATA =====")
@@ -202,8 +182,6 @@ def statistik_data(data):
     print("Rata-rata Nilai :", round(rata_rata, 2))
     print("Nilai Tertinggi :", nilai_tertinggi)
     print("Nilai Terendah  :", nilai_terendah)
-
-
 
 # FUNGSI MENU
 def tampilkan_menu():
@@ -218,19 +196,15 @@ def tampilkan_menu():
     print("7. Simpan Data")
     print("8. Keluar")
 
-
-
 # PROGRAM UTAMA
 def main():
 
     nama_file = "HASIL_PROJECT02.txt"
-
     data = baca_file(nama_file)
 
     while True:
 
         tampilkan_menu()
-
         pilih = input("Pilih Menu : ")
         
         if pilih not in ["1", "2", "3", "4", "5", "6", "7", "8"]:
@@ -238,51 +212,36 @@ def main():
             continue
 
         if pilih == "1":
-
             tambah_data(data)
-
+            
         elif pilih == "2":
-
             tampilkan_data(data)
 
         elif pilih == "3":
-
             hasil = sorting_nilai(data)
-
             print("\n===== DATA TERURUT BERDASARKAN NILAI =====")
-
             for nim, nilai in hasil:
                 print(f"{nim} : {nilai}")
 
         elif pilih == "4":
-
             cari_data(data)
 
         elif pilih == "5":
-           
-
             hapus_data(data)
 
         elif pilih == "6":
-
             statistik_data(data)
 
         elif pilih == "7":
-
             simpan_file(nama_file, data)
 
         elif pilih == "8":
-
             print("Program selesai, Terima Kasih.")
             break
-
         else:
-
             print("Pilihan tidak valid.")
-
-
+            
 main()
-
 
 # =====================================================
 # ANALISIS KOMPLEKSITAS SISTEM
@@ -300,7 +259,6 @@ main()
 # algoritma Insertion Sort.
 #
 # =====================================================
-
 
 # Revisi Program:
 # 1. Menambahkan validasi menu agar hanya menerima input 1 sampai 8.
